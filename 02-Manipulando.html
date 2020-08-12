@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8">
+		<title>jQuery</title>
+
+		<style type="text/css">
+			.vermelho{
+				background-color: red;
+			}
+
+			.preto{
+				background-color: black;
+			}
+
+		</style>
+
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+		<script>
+			/*Só executa o codigo após o carregamento da pagina
+			1- $(function(){...}) 
+			2- $(document).ready(function(){...})
+			3- $(document).ready(() => {...} *mais comum*
+			*/
+
+			$(document).ready(() => {
+				
+				//Atributos
+					//Recuperar 
+					console.log($('#div1').attr('style'))
+
+					//Alterar 
+					$('#nome').attr('value',"Texto Novo")
+
+					$('#div1').attr('style',"border:solid 1px #000; width: 500px; height: 500px")
+
+				//Conteudo 
+					//Recuperar 
+					console.log('Conteudo a: ', $('#div1').html())
+					//Acrescentar
+					$('#div1').before('<h3> antes fora <h3>')
+					//	
+					$('#div1').prepend('<h3> preceder dentro<h3>')
+					$('#div1').append('<h3> acrescentar dentro<h3>')
+					//
+					$('#div1').after('<h3> depois fora <h3>')
+					//Substituir
+					$('#antigo').html('<h3>Substituir</h3>')
+					//Excluir
+					$('#excluir').remove()	
+					//Alterar como codigo escrito
+					$('h6').text('<a href="#">LInkNovo</a>')	
+
+
+				//Valores Recuperar
+					//input
+					console.log('Valor Input: ', $("#nome").val())
+
+					//select
+					console.log('Valor select: ', $("#select1").val())
+
+					//radio
+					console.log('Valor radio: ', $(".sex:checked"))
+
+					//Chekbox
+					$.each($('.cb:checked'),(indice,valor) => {console.log('indice', indice,' valor',valor.value)})	
+
+				//Css
+					//Alterar css
+					$('input').css('background-color', '#155600')
+					$('h3').css({'background-color': 'red', 'width':'100px'})
+
+					//Adicionar classe ao elemento
+					$('select').addClass('vermelho')
+
+					//Remover classe do elemento
+					$('p').removeClass('preto outraClasse')
+
+					//Verifica se elemento possui a classe
+					console.log('Select vermelho: ',$('select').hasClass('vermelho'))			
+		
+
+			})
+
+		</script>
+
+
+	</head>
+
+	<body>
+
+		<div id="div1" style="border:solid 1px #000; width: 150px; height: 150px">
+			<h3 id="antigo">Antigo</h3>
+			<h3 id="excluir">Excluido</h3>
+			
+		</div>
+
+		<h6>Esse é outro teste</h1>
+
+		<p class="preto">Nome:</p>
+		<input id="nome" type="text" id="Texto Antigo"/>
+		<br />
+
+		<p>Selecione</p>
+		<select id="select1">
+			<option value="1">Opção 1</option>
+			<option value="2">Opção 2</option>
+			<option value="3">Opção 3</option>
+			<option value="4">Opção 4</option>
+		</select>
+
+		<p>Radio<p>
+		<input type="radio" name="sex" class="sex" value="f">Feminino<br>
+		<input type="radio" name="sex" class="sex" value="m">Masculino<br>
+
+		<p>Chekbox</p>
+		<input type="checkbox" name="cb" class="cb" value="1">Opção1<br/>
+		<input type="checkbox" name="cb" class="cb" value="2">Opção2<br/>
+		<input type="checkbox" name="cb" class="cb" value="3">Opção3<br/>
+		<input type="checkbox" name="cb" class="cb" value="4">Opção4<br/>
+	
+	</body>
+
+	
+</html>

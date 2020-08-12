@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8">
+		<title>jQuery</title>
+
+		<style>
+	
+
+
+			.emDestaque {
+				background-color: yellow;
+			}
+
+
+		</style>
+
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+		<script>
+			
+			//------------Eventos-Janela------------
+
+			//Página carregada
+			$(document).ready(() => {
+				console.log('Página carregada')
+
+				//Scroll acionado 
+				$(window).scroll(() => {
+					console.log('Scroll acionado')
+				})
+
+				//Scroll elemento
+				$('#div1').scroll(e => {
+					//Target é o elemento '#div'
+					$(e.target).css('background-color', 'blue')
+				})
+				
+
+				//Página redimensionada
+				$(window).resize(() => {
+					console.log('Página redimensionada')
+				})
+
+				
+			//------------Eventos-Mouse------------
+
+				//Botão esquerdo é pressionado
+				$('#btn1').mousedown(() => {
+					console.log('Botão esquerdo é pressionado')
+				})
+
+				//Botão esquerdo é solto
+				$('#btn1').click(() => {
+					console.log('Botão esquerdo é solto')
+				})
+
+				//Botão esquerdo é solto.
+				//mudando o padrão para outra ação.
+				$('a').click(e => {
+					e.preventDefault()
+					//Nova ação
+				})
+
+				//Botão esquerdo clicado duas vezes
+				$('#btn2').dblclick(() => {
+					console.log('Clicado duas vezes')
+				})
+
+				//Posição do ponteiro do mouse
+				$('#div2').mousemove((e) => {
+					console.log('X: ' + e.offsetX + ' / Y: ' + e.offsetY)
+				})
+
+				//Mouse entrou no elemento(Antigo mouseouver)
+				$('#divInterna').mouseenter(() => {
+					console.log('Div Interna (entrou)')
+				})
+
+				//Mouse saiu do elemento(Antigo mouseout)
+				$('#divInterna').mouseleave(() => {
+					console.log('Div Interna (saiu)')
+				})
+
+				//Mouse entrar e sair na mesma chamada
+				$('#div4').hover(
+					//Mouse entrou
+					e => $(e.target).html('Entrou'),
+					//Mouse saiu
+					e => $(e.target).html('Saiu')
+				)
+
+
+			//------------Eventos-Teclado------------
+				
+				//tecla é pressionada
+				$('#nome, #email').keydown((e) => {
+					console.log('Tecla apertada: ',$(e.target).val())	
+				})
+
+
+				//tecla é liberada.
+				$('#nome, #email').keyup((e) => {
+					console.log('Tecla solta: ',$(e.target).val())	
+				})
+
+
+			//------------Eventos-Formulário------------
+
+				//Elemento ganhou foco
+				$('#nome').focus((e) => {
+					console.log('Elemento recebeu o foco')
+				})
+					
+
+				//Elemento perdeu o foco
+				$('#nome').blur((e) => {
+					console.log('Elemento perdeu o foco')
+				})
+
+				//Mudança no <input>, <textarea> e <select>
+				$('#opcao').change((e) => {
+					console.log($(e.target).val())
+				})
+
+				//Mudar o default do submit para outra execução.
+				$('form').submit((e) => {
+					e.preventDefault()
+					console.log('Formulário enviado')
+				})
+
+				$('a').click(e => {
+					e.preventDefault()
+					//Nova ação
+				})
+
+
+			//------------ON/OF(Registrando eventos)------------
+
+				$('body').on('focus', '#nome' , e=> {
+					$(e.target).css('background-color', 'gray')
+				})
+	
+				$('body').on('blur', '#nome' , e=> {
+					$(e.target).css('background-color', 'white')
+				})
+				
+				$('#off').click(() => {
+					console.log('Desligar evento')
+					$('body').off('focus','#nome')
+				})
+
+
+			//------------Copiar evento------------
+			$('#btn3').on('click', () => {
+					//Pega o evento do Botão1
+					$('#btn1').trigger('click')
+				})		
+			
+
+			//inclusão/remoção de classe no mesmo evento
+			//Botão
+			$('#btn3').click(
+					e => {$(e.target).toggleClass('emDestaque')
+					console.log('troca classe')
+
+				}
+			)
+			
+			//Botão
+			$('#div5').hover(
+					e => {$(e.target).toggleClass('emDestaque')
+					console.log('troca classe')
+
+				}
+			)
+
+				
+				
+			})
+		</script>
+	</head>
+
+	<body>
+	
+	
+
+		<div>
+			
+			<h3>------------Eventos Janela------------</h3>
+			<div id="div1" style="height: 100px; width: 100px; border: solid 1px; overflow-y: scroll">
+				<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+			</div>
+			<hr />
+
+
+			<h3>------------Eventos Mouse------------</h3>
+			<button id="btn1" type="button">Clique aqui</button>
+			<button id="btn2" type="button">Clique aqui 2x</button>
+			<button id="btn3" type="button">Clone</button>
+
+			<div id="div2" style="background-color: red; width: 100px;
+			 height: 100px; margin-top: 10px; margin-bottom: 10px">Posição do ponteiro do mouse</div>
+
+
+			<div id="divInterna" style="background-color: blue; width: 100px; height: 100px; margin-top: 10px; margin-bottom: 10px">Entrou e saiu</div>
+
+			<div id="div4" style="background-color: green; width: 100px; height: 100px; margin-top: 10px; margin-bottom: 10px"></div>
+
+			<div id="div5" style=" width: 100px; height: 100px; border: solid 1px; margin-top: 10px; margin-bottom: 10px"></div>
+	
+	
+			<h3>------------Eventos Teclado e Formulário------------</h3>
+			<form id="form">
+				<span>Nome:</span>
+				<input type="text" id="nome" />
+
+				<span>E-mail:</span>
+				<input type="text" id="email" />
+
+				<button id="off" type="button">Desligar evento de destaque</button>
+
+				
+				<select id="opcao">
+					<option value="">-- Selecione --</option>
+					<option value="valor1">Valor 1</option>
+					<option value="valor2">Valor 1</option>
+				</select>
+				<button type="text">Enviar Formulário</button>	
+			</form>
+
+
+
+			<br />
+			<a href="http://www.site1.com.br">site1</a>
+		
+
+
+
+
+
+
+		</div>
+	</body>
+
+</html>

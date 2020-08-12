@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script> 
+			$(document).ready(function(){
+				$("button").click(function(){
+				  	
+				  	startAnimation();
+				  	function startAnimation(){
+					  
+				  	//Visual da imagem parada
+					  let visualMeio = {
+							'background': '#98bf21',
+							'width': '500px',
+							'height': '100px',
+							'position':'absolute',
+							'opacity':'1'
+						}
+
+					//Visual vazio
+						let visualFinal = {
+							'background': '#98bf21',
+							'width': '0',
+							'height': '100px',
+							'position':'absolute',
+							'opacity':'0'
+						}
+
+						//Transição
+						let efeitoFinal = {
+							//Duração 1s
+							duration: 1000,
+							//Função para Inicio Transição
+							start: () => { console.log('Inicio efeito') },
+							//Função durante Transição
+							step: () =>  { console.log('efeito') }, 
+							//Função para Ifim Transição
+							complete: () => {console.log('Fim efeito') }, 
+						}
+
+						//Imagem parada
+						let efeitoMeio = {
+							//Duração 3s
+							duration: 3000,
+							start: () => { console.log('Inicio Meio') },
+							//Função durante o momento fixo
+							step: () =>  { console.log('efeito') },
+							//Função Recursiva 
+							complete: () => {startAnimation()},
+
+						}
+
+						var div = $("div");
+					    div.animate(visualMeio, efeitoFinal);
+					    div.animate(visualMeio, efeitoMeio);
+					    div.animate(visualFinal, efeitoFinal);
+					}
+			  });
+			});
+		</script> 
+	</head>
+	<body>
+
+		<button>Iniciar</button>
+
+	
+
+		<div style="background:#98bf21;height:100px;width:100px;position:absolute; opacity:0.0"></div>
+
+	</body>
+</html>

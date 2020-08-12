@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8">
+		<title>jQuery</title>
+
+		<style>
+			.b {
+				margin-top: 10px;
+				margin-bottom: 5px;
+				width: 200px;
+				height: 20px;
+			}
+
+			.div {
+				width: 300px;
+				height: 300px;
+			}
+
+			.div1 {
+				background-color: red
+			}
+
+		
+		</style>
+
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+		<script>
+
+			$(document).ready(() => {		
+				$('#btn1').on('click', () => {
+					let tempo = $("#tempo").val()
+					if (tempo == "s"){
+						tempo = 3000
+					}
+					
+					switch($("#efeito").val()) {
+						case '0':
+					//-----Fade com escala---
+					//--------toggle() -Ocultar Automático
+					//Tempo = ("slow","medio","fast", 5000)
+					    	$('#div1').toggle(tempo)
+					    	break;
+
+					    case '1':
+					    	//Ocultar diminuindo
+					    	$('#div1').hide(tempo)
+					    	break;
+
+					    case '2':
+					    	//show() - Mostrar aumentando
+					    	$('#div1').show(tempo)
+					    	break;
+
+
+					 //----Fade---  
+					//--------fadeToggle() - Fade Automático
+					//Tempo = ("slow","medio","fast", 5000)
+					    case '3':
+					    	$('#div1').fadeToggle(tempo)
+					   		break;
+
+					    case '4':
+					    	//Fade out
+					    	$('#div1').fadeOut(tempo)
+					    	break;
+
+					    case '5':
+					    	//Fade in
+					    	$('#div1').fadeIn(tempo)
+					    	break;
+					    case '6':
+
+					//------Fade até valor em % de transparencia
+					//Tempo = ("slow","medio","fast", 5000)
+					    	$('#div1').fadeTo(tempo,0.8)
+					    	break;
+					    case '7':
+
+					//---Deslizar----
+
+					//---------Deslizar automático
+					//Tempo = ("slow","medio","fast", 5000)
+					    	$('#div1').slideToggle(tempo)
+					    	break;
+
+					    case '8':
+					    	// Mostrar deslizando
+					    	$('#div1').slideDown(tempo)
+					    	break;
+
+					    case '9':
+					    	//Ocultar deslizando
+					    	$('#div1').slideUp(tempo)
+					    	break;
+
+					    default:
+					        // code block
+					    }
+				})
+
+			})
+		</script>
+	</head>
+
+	<body>
+		
+		<div class="grupo">
+			
+			<p>Efeito:</p>	
+			<select class="b" id="efeito">
+				<option value="0">*toggle() -Ocultar automático</option>
+				<option value="1">hide()- Ocultar diminuindo</option>
+				<option value="2">show() - Mostrar deslizando</option>
+				<option value="3">*fadeToggle() - Fade automático</option>
+				<option value="4">fadeOut()</option>
+				<option value="5">fadeIn()</option>
+				<option value="6">fadeTo() - Fade até valor em % de transparencia</option>
+				<option value="7">*slideToggle() - Deslizar automático</option>
+				<option value="8">slideDown() - Mostrar deslizando</option>
+				<option value="9">slideUp() - Ocultar deslizando</option>
+			</select>
+
+			<p>Tempo:</p>	
+			<select class="b" id="tempo">
+				<option value="">Padrão</option>
+				<option value="slow">Slow</option>
+				<option value="medio">Médio</option>
+				<option value="fast">Rápido</option>
+				<option value="s">3 Segundos</option>		
+			</select>
+
+			<p>Ver:</p>	
+			<button class="b" id="btn1" type="button">Ação</button>
+
+			<div id="div1" class="div div1" style=""></div>
+			
+		</div>	
+
+</body></html>
